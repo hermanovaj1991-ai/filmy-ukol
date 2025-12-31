@@ -103,6 +103,17 @@ const filmy = [
 			'Na zámek v podhůří Krkonoš přijíždí jeho nový majitel Štěpán se svojí snoubenkou, krásnou komtesou Blankou, a mladším bratrem Adamem. Cestou kočár nešťastně srazí kolemjdoucí dívku, Adam jí pomůže a ona se do něj zamiluje. Na zámku Adam objeví starou vlašskou knihu, která by měla obsahovat cestu k pokladům. Tajemné značky vlašské knihy však nedokáže vyluštit ani národopisec Jiráček, který v kraji sbírá pověsti a nevychází z údivu nad tím, že zdejší lidé stále věří v Krakonoše. Na zámku se objeví záhadný cizinec a nabídne Štěpánovi, že jej k pokladu za určitých podmínek dovede. Výprava do hor může začít. Naplní se Liduščina láska k Adamovi? Jakou záhadu skrývá starý obraz na zámku Hůrka a co strašlivého se v horách kdysi odehrálo? A kdo je vlastně Krakonoš a jaké je jeho největší tajemství? (csfd.cz, Česká televize)',
 		premiera: '2022-12-24',
 	},
+	{id: 'Kmotr',
+		nazev: 'Kmotr',
+		plakat: {
+			url: 'https://image.pmgstatic.com/cache/resized/w280/files/images/film/posters/162/362/162362236_a2f3bc.jpg',
+			sirka: 420,
+			vyska: 592,
+		},
+		ochutnavka: 'Gangsterske drama.',
+		popis:
+			'„Kmotr“ je ikonický kriminální film z roku 1972, režie Francis Ford Coppola. Příběh sleduje mocnou italsko-americkou rodinu Corleonů v New Yorku. Na čele rodiny stojí don Vito Corleone, charismatický, ale nekompromisní vůdce. Film zobrazuje svět organizovaného zločinu, loajalitu a zradu. Hlavní postavy se musí vyrovnávat s mocenskými boji a osobními konflikty. „Kmotr“ je ceněn pro silné herecké výkony a ikonické scény, které ovlivnily celý žánr gangsterských filmů. (csfd.cz)',
+		premiera: '2022-12-24'},
 ]
 
 
@@ -128,7 +139,7 @@ if (filmDetail) {
 	detail.querySelector('.card-text').textContent=filmDetail.popis;
 	// potrebujem plakat
 	const img = detail.querySelector('img');
-	img,src=filmDetail.plakat.url;
+	img.src=filmDetail.plakat.url;
 	img.alt=filmDetail.nazev;
 }
 
@@ -140,11 +151,11 @@ noteForm.addEventListener('submit',function (e) {
 	e.preventDefault();
 
 	const messageInput = document.querySelector('#message-input');
-	const termsCheckbox = document.querySelector('#terms=checkbox');
+	const termsCheckbox = document.querySelector('#terms-checkbox');
 
 // odtsranuju predchozi overeni
 messageInput.classList.remove('is-invalid');
-termsCheckbox.remove('is-invalid');
+termsCheckbox.classList.remove('is-invalid');
 let valid= true;
 
 // napsal uzivatel tetx?
@@ -173,12 +184,12 @@ if (valid) {
 const premiElement=document.querySelector('#premiera');
 
 // vytvorim datum z dayjs
-if (film && premiElement) {
-	const premieraDatum= dayjs(film.premiera);
+if (filmDetail && premiElement) {
+	const premieraDatum= dayjs(filmDetail.premiera);
 	const dnes= dayjs();
 
 // datum-format
-const datumFormatted= premeraDatum.format('D.M.YYY"');
+const datumFormatted= premieraDatum.format('D.M.YYYY');
 // ROZDIL VE DNESCH
 const rozdilDni= premieraDatum.diff(dnes,"day");
 
